@@ -17,10 +17,17 @@ namespace NitroxClient.GameLogic.Spawning.Metadata
 
             LaserCutObject laseredObject = gameObject.GetComponent<LaserCutObject>();
 
-            if (laseredObject && door._sealed)
+            if (laseredObject)
             {
                 laseredObject.ReflectionSet("lastCutValue", door.openedAmount);
-                laseredObject.ActivateFX();
+                if (door._sealed)
+                {
+                    laseredObject.ActivateFX();
+                }
+                else
+                {
+                    laseredObject.CutOpenDoor();
+                }
             }
         }
     }
